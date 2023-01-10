@@ -2,12 +2,8 @@
 import math
 import os
 import pickle
-import time
 from time import sleep
 
-from crontab import CronTab
-# Press Maj+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
@@ -161,6 +157,9 @@ def getAllRessources():
 
 def getTotalRessourceInPlanet():
     ressources_total = {}
+    ressources_total["metal"] = 0
+    ressources_total["crystal"] = 0
+    ressources_total["deuterium"] = 0
     for planet in getAllPlanet():
         goToPlanet(planet.get("name"))
         goToOverview()
@@ -272,12 +271,12 @@ def sendExp(planet, floats):
         }     ,
         'explorer':
         {
-        'nb': 50,
+        'nb': 1,
         'Obligatory': False,
         },
         'reaper':
         {
-        'nb': 50,
+        'nb': 1,
         'Obligatory': False,
         }
     }
@@ -342,12 +341,12 @@ ogameAuth()
 getLinkAccount()
 goToServer()
 goToOverview()
-print("nb_exp", sendExp('Ood', {}))
+#print("nb_exp", sendExp('Ood', {}))
 print(addCronTab(getExpInProgress()))
-print(getAllPlanet())
+print(getTotalRessourceInPlanet())
 
-
-"""for planet in getAllPlanet():
+"""
+for planet in getAllPlanet():
     if (planet.get("name") != 'Alie'):
         print("got to=", planet.get("name"))
         goToPlanet(planet.get("name"))
@@ -366,7 +365,7 @@ print(getAllPlanet())
 sleep(1)
 driver.quit()
 
-"""
+"""""
 import os
 from selenium import webdriver
 from pyvirtualdisplay import Display
